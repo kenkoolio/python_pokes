@@ -15,12 +15,12 @@ app = initialize_app()
 
 manager = Manager(app)
 
-# implement later, just creates database, needs to have mysql server installed 
+# implement later, just creates database, needs to have mysql server installed
 # @manager.option('-db', '--database', help='database name')
 # def create_db(database):
 #   create_database(app, database)
 
-manager.add_command('runserver', Server(host='127.0.0.1'))
+manager.add_command('runserver', Server(host='127.0.0.1', port=5111))
 
 if __name__ == "__main__":
     manager.run()
