@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <title>Welcome to Ken's Python Belt Exam Poke Thing</title>
+    <meta charset='UTF-8'>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- bootstrap end -->
+
+  </head>
+  <body>
+    <div class='container' >
+      <div class='row'>
+        <div class='col-md-6'>
+          <h1>Welcome {{user['alias']}}!</h1>
+        </div>
+        <div class='col-md-6'>
+          <a href='/logout' class='logout pull-right'>Logout</a>
+        </div>
+      </div><!-- row -->
+
+      <div class='row'><!--pokecount -->
+        <h3>{{how_many_count}} people poked you!!!</h3>
+      </div><!-- poke count-->
+
+      <div class='row'>
+        <div class='col-md-4'>
+          {%if who_poke_me%}
+            <ul>
+            {%for pokes in who_poke_me%}
+            <li>{{pokes['friend']}} poked you {{pokes['poked_me']}} times.</li>
+            {%endfor%}
+            </ul>
+          {%endif%}
+        </div>
+      </div><!-- total poke counts row -->
+
+      <div class='row'>
+        <h4>People you may want to poke: </h4>
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+            <td>Name</td>
+            <td>Alias</td>
+            <td>Email Address</td>
+            <td>Poke History</td>
+            <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {%if pokes%}
+              {%for poke in pokes%}
+              <tr>
+              <td>{{poke['name']}}</td>
+              <td>{{poke['alias']}}</td>
+              <td>{{poke['email']}}</td>
+              <td>{{poke['poke_history']}}</td>
+              <td><form action='/pokes/{{poke['id']}}' method='POST'><input class='btn btn-success' type='submit' value='Poke!'></form></td>
+              </tr>
+              {%endfor%}
+            {%endif%}
+          </tbody>
+        </table>
+      </div><!-- row -->
+    </div><!-- container -->
+  </body>
+</html>

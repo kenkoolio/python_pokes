@@ -1,0 +1,6 @@
+*.DS_store
+*.swp
+*.pyc
+venv/*
+__pycache__/*
+poke_model.mwb
